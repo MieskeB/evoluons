@@ -60,10 +60,11 @@ public class Agent : MonoBehaviour
         energy -= Time.deltaTime * 5f;
         health -= Time.deltaTime * 1f;
         happiness -= Time.deltaTime * 2f;
-        score += Time.deltaTime * 2f;
+        score += Time.deltaTime * (energy + health + happiness) / 300f;
 
         if (energy <= 0f || health <= 0f || happiness <= 0f)
         {
+            score -= 25f;
             Destroy(gameObject);
         }
     }
@@ -159,7 +160,7 @@ public class Agent : MonoBehaviour
         energy -= 50f;
         health -= 20f;
         happiness += 100f;
-        score += 50f;
+        score += 100f;
         GameObject child = Instantiate(gameObject, transform.position, Quaternion.identity);
         Agent childAgent = child.GetComponent<Agent>();
         childAgent.health = 100f;

@@ -91,7 +91,7 @@ public class Brain
         return outputs;
     }
 
-    public Brain CloneWithMutation(float mutationRate = 0.1f)
+    public Brain CloneWithMutation(float mutationRate = 0.4f)
     {
         Brain clone = new Brain();
 
@@ -126,7 +126,8 @@ public class Brain
     {
         if (UnityEngine.Random.value < mutationRate)
         {
-            return weight + UnityEngine.Random.Range(-0.5f, 0.5f);
+            float multiplier = 1f + UnityEngine.Random.Range(-0.05f, 0.05f);
+            return weight * multiplier;
         }
 
         return weight;
